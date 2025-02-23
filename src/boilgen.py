@@ -76,14 +76,24 @@ TEMPLATES = {
     }
 }
 
-
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    
 def usage():
-    print("--USAGE--")
-    print("boilgen <Language> <Type>")
-    print("--AVAILABLE TEMPLATES--")
+    print(bcolors.HEADER + bcolors.UNDERLINE + "USAGE" + bcolors.ENDC)
+    print(f"{bcolors.BOLD}boilgen{bcolors.ENDC} <Language> <Type>")
+    print(bcolors.HEADER + bcolors.UNDERLINE + "AVAILABLE TEMPLATES" + bcolors.ENDC)
     templates_lang = TEMPLATES.keys()
     for lang_template in templates_lang:
-        print("[" + lang_template.title() + "]")
+        print(bcolors.OKCYAN + "[" + bcolors.ENDC + bcolors.BOLD + lang_template.title() + bcolors.ENDC + bcolors.OKCYAN + "]" + bcolors.ENDC)
         templates_p_lang = TEMPLATES[lang_template].keys()
         for p_template in templates_p_lang:
             print(" " + p_template)
@@ -115,16 +125,16 @@ if __name__ == "__main__":
     for action in template:
         if template[action] == "dir":
             if os.path.exists(action):
-                print(f"[-] Directory already exists: {action} Skipping...")
+                print(f"{bcolors.FAIL}[-]{bcolors.ENDC} Directory already exists: {bcolors.OKCYAN}{action}{bcolors.ENDC} Skipping...")
                 continue
-            print(f"[+] Creating directory: " + action)
+            print(f"{bcolors.OKGREEN}[+]{bcolors.ENDC} Creating directory: {bcolors.OKCYAN}" + action + bcolors.ENDC)
             os.makedirs(action)
             dirs += 1
         else:
             if os.path.exists(action):
-                print(f"[-] File already exists: {action} Skipping...")
+                print(f"{bcolors.FAIL}[-]{bcolors.ENDC} File already exists: {bcolors.OKCYAN}{action}{bcolors.ENDC} Skipping...")
                 continue
-            print(f"[+] Creating file: " + action)
+            print(f"{bcolors.OKGREEN}[+]{bcolors.ENDC} Creating file: {bcolors.OKCYAN}" + action + bcolors.ENDC)
             with open(action, "w") as f:
                 f.write(template[action])
             files += 1
@@ -133,4 +143,4 @@ if __name__ == "__main__":
 
     mins, secs = divmod(total_time, 60)
 
-    print(f"Finished! Took: {round(secs, 4)}s, created {dirs} {"Directory" if dirs == 1 else "Directories"}, {files} {"File" if files == 1 else "Files"} (Total: {files+dirs})")
+    print(f"{bcolors.OKGREEN}{bcolors.BOLD}Finished!{bcolors.ENDC} Took: {bcolors.OKCYAN}{round(secs, 4)}{bcolors.ENDC}s, created {bcolors.OKCYAN}{dirs}{bcolors.ENDC} {"Directory" if dirs == 1 else "Directories"}, {bcolors.OKCYAN}{files}{bcolors.ENDC} {"File" if files == 1 else "Files"} (Total: {bcolors.OKCYAN}{files+dirs}{bcolors.ENDC})")
