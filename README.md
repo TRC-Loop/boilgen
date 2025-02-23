@@ -50,16 +50,6 @@ boilgen python flask
 ```
 This creates a Flask project structure in your current directory! 🎉
 
-### **Example Output**
-```sh
-Generating Boilerplate...
-Path: /your/project/path
-[+] Creating directory: templates/
-[+] Creating directory: static/
-[+] Creating file: app.py
-Finished! Took: 0.0032s, created 2 Directories, 1 File (Total: 3)
-```
-
 ---
 
 ## 🔥 Supported Languages & Frameworks
@@ -91,6 +81,4 @@ Want to add more templates or improve the script? Feel free to fork the repo and
 
 ## 📜 License
 MIT License - Free to use and modify.
-
-🚀 Happy Coding! 🎉
 
