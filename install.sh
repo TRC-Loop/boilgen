@@ -14,6 +14,8 @@ command -v python3 >/dev/null 2>&1 || { echo "❌ Python3 is not installed. Inst
 # Clone or update repository
 if [ -d "$INSTALL_DIR" ]; then
     echo "🔄 Updating existing Boilgen installation..."
+    echo "Deleting Old Installation..."
+    rm -rf ~/.boilgen ~/.local/bin/boilgen
     cd "$INSTALL_DIR" && git pull
 else
     echo "📥 Downloading Boilgen..."
