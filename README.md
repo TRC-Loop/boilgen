@@ -29,7 +29,7 @@ chmod +x ~/.local/bin/boilgen
 ```
 
 > **Note:** Ensure `~/.local/bin` is in your `PATH`.
-
+> **Updating** Run these commands when you want to update as well! It will detect the existing installation!
 ---
 
 ## 🚀 Usage
