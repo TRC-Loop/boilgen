@@ -20,21 +20,40 @@ TEMPLATES = {
         },
         "typer": {
             "main.py": "import typer\napp = typer.Typer()\n@app.command()\ndef hello(name: str):\n\tprint(f'Hello {name}!')\nif __name__ == '__main__':\n\tapp()"
+        },
+        "pygame": {
+            "assets/": "dir",
+            "assets/images/": "dir",
+            "assets/music/": "dir",
+            "assets/sounds/": "dir",
+            "menus/": "dir",
+            "main.py": "import pygame\nimport sys\nfrom menus import main_menu\n\n# Initialize Pygame\npygame.init()\n\n# Setup\nscreen = pygame.display.set_mode((800, 600))\npygame.display.set_caption('Pygame Template')\nclock = pygame.time.Clock()\n\n# Main Game Loop\ndef game_loop():\n\trunning = True\n\twhile running:\n\t\tfor event in pygame.event.get():\n\t\t\tif event.type == pygame.QUIT:\n\t\t\t\trunning = False\n\n\t\t# Game Logic Here\n\t\tscreen.fill((0, 0, 0))\n\n\t\tpygame.display.flip()  # Update the screen\n\n\t\tclock.tick(60)  # 60 frames per second\n\n\tpygame.quit()\n\tsys.exit()\n\nif __name__ == '__main__':\n\tmain_menu()\n\tgame_loop()",
+            "menus/main_menu.py": "import pygame\n\n# Setup Menu Screen\ndef main_menu():\n\t# Display background\n\tscreen = pygame.display.get_surface()\n\tbg_color = (255, 255, 255)\n\tscreen.fill(bg_color)\n\n\t# Menu text\n\tfont = pygame.font.SysFont('Arial', 48)\n\ttext = font.render('Main Menu', True, (0, 0, 0))\n\tscreen.blit(text, (250, 100))\n\n\t# Start Button\n\tstart_button = pygame.Rect(300, 250, 200, 50)\n\tpygame.draw.rect(screen, (0, 255, 0), start_button)\n\tstart_text = font.render('Start Game', True, (255, 255, 255))\n\tscreen.blit(start_text, (350, 260))\n\n\t# Check if Start Button is clicked\n\tpygame.display.flip()\n\n\twhile True:\n\t\tfor event in pygame.event.get():\n\t\t\tif event.type == pygame.QUIT:\n\t\t\t\tpygame.quit()\n\t\t\t\tquit()\n\t\t\tif event.type == pygame.MOUSEBUTTONDOWN:\n\t\t\t\tif start_button.collidepoint(event.pos):\n\t\t\t\t\treturn"
+        },
+        "ursina": {
+            "assets/": "dir",
+            "assets/textures/": "dir",
+            "assets/models/": "dir",
+            "main.py": "from ursina import *\n\napp = Ursina()\n\n# Create a simple 3D cube\ncube = Entity(model='cube', color=color.red, scale=(2,2,2))\n\n# Simple movement with WASD keys\ndef update():\n\tif held_keys['w']:\n\t\tcube.y += 1 * time.dt\n\tif held_keys['s']:\n\t\tcube.y -= 1 * time.dt\n\tif held_keys['a']:\n\t\tcube.x -= 1 * time.dt\n\tif held_keys['d']:\n\t\tcube.x += 1 * time.dt\n\napp.run()"
+        },
+        "flask_restful": {
+            "app.py": "from flask import Flask\nfrom flask_restful import Api, Resource\n\napp = Flask(__name__)\napi = Api(app)\n\nclass HelloWorld(Resource):\n\tdef get(self):\n\t\treturn {'message': 'Hello World!'}\n\napi.add_resource(HelloWorld, '/')\n\nif __name__ == '__main__':\n\tapp.run(debug=True)"
         }
     },
     "c": {
         "basic": {
-            "main.c": "#include <stdio.h>\nint main() {\n    printf(\"Hello World!\\n\");\n    return 0;\n}"
-        }
-    },
-    "cpp": {
-        "basic": {
-            "main.cpp": "#include <iostream>\nint main() {\n    std::cout << \"Hello World!\\n\";\n    return 0;\n}"
+            "main.c": "#include <stdio.h>\nint main() {\n\tprintf(\"Hello World!\\n\");\n\treturn 0;\n}"
+        },
+        "flag": {
+            "main.c": "#include <stdio.h>\n#include <stdlib.h>\n#include <getopt.h>\n\nint main(int argc, char *argv[]) {\n\tint option;\n\twhile ((option = getopt(argc, argv, \"f:v\")) != -1) {\n\t\tswitch (option) {\n\t\t\tcase 'f':\n\t\t\t\tprintf(\"Flag -f with value: %s\\n\", optarg);\n\t\t\t\tbreak;\n\t\t\tcase 'v':\n\t\t\t\tprintf(\"Flag -v\\n\");\n\t\t\t\tbreak;\n\t\t\tdefault:\n\t\t\t\tprintf(\"Usage: %s [-f value] [-v]\\n\", argv[0]);\n\t\t\t\treturn 1;\n\t\t}\n\t}\n\treturn 0;\n}"
         }
     },
     "go": {
         "basic": {
-            "main.go": "package main\nimport \"fmt\"\nfunc main() {\n    fmt.Println(\"Hello World!\")\n}"
+            "main.go": "package main\nimport \"fmt\"\nfunc main() {\n\tfmt.Println(\"Hello World!\")\n}"
+        },
+        "flag": {
+            "main.go": "package main\nimport (\n\t\"flag\"\n\t\"fmt\"\n)\n\nfunc main() {\n\tvar name string\n\tvar age int\n\tflag.StringVar(&name, \"name\", \"John\", \"Enter your name\")\n\tflag.IntVar(&age, \"age\", 30, \"Enter your age\")\n\tflag.Parse()\n\n\tfmt.Printf(\"Hello %s, you are %d years old.\", name, age)\n}"
         }
     },
     "javascript": {
@@ -44,29 +63,29 @@ TEMPLATES = {
         "react": {
             "src/": "dir",
             "public/": "dir",
-            "package.json": "{\n  \"name\": \"react-app\",\n  \"version\": \"1.0.0\",\n  \"dependencies\": {\n    \"react\": \"^18.0.0\",\n    \"react-dom\": \"^18.0.0\"\n  }\n}" 
+            "package.json": "{\n\t\"name\": \"react-app\",\n\t\"version\": \"1.0.0\",\n\t\"dependencies\": {\n\t\t\"react\": \"^18.0.0\",\n\t\t\"react-dom\": \"^18.0.0\"\n\t}\n}"
         }
     },
     "website": {
         "html_css_js": {
-            "index.html": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Hello World</title>\n    <link rel='stylesheet' href='style.css'>\n</head>\n<body>\n    <h1>Hello World!</h1>\n    <script src='script.js'></script>\n</body>\n</html>",
+            "index.html": "<!DOCTYPE html>\n<html>\n<head>\n\t<title>Hello World</title>\n\t<link rel='stylesheet' href='style.css'>\n</head>\n<body>\n\t<h1>Hello World!</h1>\n\t<script src='script.js'></script>\n</body>\n</html>",
             "style.css": "body { font-family: Arial, sans-serif; text-align: center; }",
             "script.js": "document.addEventListener('DOMContentLoaded', () => console.log('Hello World!'));"
         }
     },
     "java": {
         "basic": {
-            "Main.java": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello World!\");\n    }\n}" 
+            "Main.java": "public class Main {\n\tpublic static void main(String[] args) {\n\t\tSystem.out.println(\"Hello World!\");\n\t}\n}"
         }
     },
     "kotlin": {
         "basic": {
-            "Main.kt": "fun main() {\n    println(\"Hello World!\")\n}" 
+            "Main.kt": "fun main() {\n\tprintln(\"Hello World!\")\n}"
         }
     },
     "csharp": {
         "console": {
-            "Program.cs": "using System;\nclass Program {\n    static void Main() {\n        Console.WriteLine(\"Hello World!\");\n    }\n}"
+            "Program.cs": "using System;\nclass Program {\n\tstatic void Main() {\n\t\tConsole.WriteLine(\"Hello World!\");\n\t}\n}"
         },
         "aspnet": {
             "Controllers/": "dir",
@@ -75,6 +94,7 @@ TEMPLATES = {
         }
     }
 }
+
 
 class bcolors:
     HEADER = '\033[95m'
