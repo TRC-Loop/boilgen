@@ -1,5 +1,9 @@
 # 🚀 Boilgen - The Ultimate Boilerplate Generator
 
+<p align="center">
+  <img src="https://github.com/TRC-Loop/boilgen/blob/main/static/boilgen.gif?raw=true" alt="Boilgen GIF">
+</p>
+
 Boilgen is a powerful and easy-to-use CLI tool that instantly generates project boilerplates for multiple languages and frameworks. Whether you're building a Flask app, a React project, or a simple C++ program, Boilgen has you covered!
 
 ## 🎯 Features
