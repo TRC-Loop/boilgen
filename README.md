@@ -4,6 +4,15 @@
   <img src="https://github.com/TRC-Loop/boilgen/blob/main/static/boilgen.gif?raw=true" alt="Boilgen GIF">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/github/v/release/TRC-Loop/Boilgen?label=Version&style=flat-square" alt="GitHub Release">
+  <img src="https://img.shields.io/github/stars/TRC-Loop/boilgen?style=flat-square&label=Stars" alt="GitHub Repo stars">
+  <img src="https://img.shields.io/github/languages/code-size/TRC-Loop/Boilgen?style=flat-square&label=Size%20(Code)" alt="GitHub code size">
+  <img src="https://img.shields.io/github/license/TRC-Loop/boilgen?style=flat-square&label=License" alt="GitHub License">
+</p>
+
+
+
 Boilgen is a powerful and easy-to-use CLI tool that instantly generates project boilerplates for multiple languages and frameworks. Whether you're building a Flask app, a React project, or a simple C++ program, Boilgen has you covered!
 
 ## 🎯 Features
