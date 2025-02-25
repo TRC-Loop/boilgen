@@ -104,6 +104,8 @@ Use `dir` (lowercase) as a value for folders, else, a file with that content wil
 
 Use `\n`for New Lines in code and `\t` for Tabs.
 
+> **Note**: Template (Language and Type) Names should _always_ be lowercase. Else it might not work!
+
 ---
 
 ## 📜 License
