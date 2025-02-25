@@ -18,7 +18,16 @@ Boilgen is a powerful and easy-to-use CLI tool that instantly generates project 
 - ✅ Instant setup with predefined templates
 - ✅ Simple, fast, and lightweight
 - ✅ Fully customizable
-
+  
+**Future features (TODO)**
+  
+- Templates using JSON (or other formats)
+- Commands running before/after execution (eg. Create Python Venv, Init Git Repo, ...) per os
+- More Arguments (Silent, Path, ...)
+- Complex Templates
+- Progressbar/Loader
+- Template Package Manager (`boilpack install ...`)
+> **Note**: Open an Issue for Ideas! (Greatly Appreciated)
 ---
 
 ## 📥 Installation
