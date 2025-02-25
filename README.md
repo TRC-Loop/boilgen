@@ -1,8 +1,6 @@
 # 🚀 Boilgen - The Ultimate Boilerplate Generator
+<p align="center"><h2 align="center" style="margin:0;padding:0;">Create New Projects the fast way</h2><br><img src="https://github.com/TRC-Loop/boilgen/blob/main/static/boilgen.gif?raw=true" alt="Boilgen GIF"></p>
 
-<p align="center">
-  <img src="https://github.com/TRC-Loop/boilgen/blob/main/static/boilgen.gif?raw=true" alt="Boilgen GIF">
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/github/v/release/TRC-Loop/Boilgen?label=Version&style=flat-square" alt="GitHub Release">
