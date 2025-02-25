@@ -16,7 +16,8 @@ if [ -d "$INSTALL_DIR" ]; then
     echo "🔄 Updating existing Boilgen installation..."
     echo "Deleting Old Installation..."
     rm -rf ~/.boilgen ~/.local/bin/boilgen
-    cd "$INSTALL_DIR" && git pull
+    echo "📥 Downloading Boilgen..."
+    git clone "$REPO_URL" "$INSTALL_DIR"
 else
     echo "📥 Downloading Boilgen..."
     git clone "$REPO_URL" "$INSTALL_DIR"
