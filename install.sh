@@ -15,23 +15,21 @@ command -v python3 >/dev/null 2>&1 || { echo "❌ Python3 is not installed. Inst
 if [ -d "$INSTALL_DIR" ]; then
     echo "🔄 Updating existing Boilgen installation..."
     echo "Deleting Old Installation..."
-    rm -rf ~/.boilgen ~/.local/bin/boilgen
-    echo "📥 Downloading Boilgen..."
-    git clone "$REPO_URL" "$INSTALL_DIR"
-else
-    echo "📥 Downloading Boilgen..."
-    git clone "$REPO_URL" "$INSTALL_DIR"
+    rm -rf "$INSTALL_DIR" "$BIN_DIR/boilgen" || { echo "❌ Failed to remove old installation."; exit 1; }
 fi
 
+echo "📥 Downloading Boilgen..."
+git clone "$REPO_URL" "$INSTALL_DIR" || { echo "❌ Failed to clone repository."; exit 1; }
+
 # Create symlink
-mkdir -p "$BIN_DIR"
-ln -sf "$INSTALL_DIR/src/boilgen.py" "$BIN_DIR/boilgen"
-chmod +x "$BIN_DIR/boilgen"
+mkdir -p "$BIN_DIR" || { echo "❌ Failed to create bin directory."; exit 1; }
+ln -sf "$INSTALL_DIR/src/boilgen.py" "$BIN_DIR/boilgen" || { echo "❌ Failed to create symlink."; exit 1; }
+chmod +x "$BIN_DIR/boilgen" || { echo "❌ Failed to make Boilgen executable."; exit 1; }
 
 # Add to PATH if needed
 if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
-    echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$HOME/.bashrc"
-    echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$HOME/.zshrc"
+    echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$HOME/.bashrc" || { echo "❌ Failed to update .bashrc."; exit 1; }
+    echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$HOME/.zshrc" || { echo "❌ Failed to update .zshrc."; exit 1; }
     echo "✅ Added Boilgen to PATH. Restart your terminal or run 'source ~/.bashrc' (or ~/.zshrc) to apply changes."
 fi
 
