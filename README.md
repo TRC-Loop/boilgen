@@ -41,7 +41,7 @@ chmod +x ~/.local/bin/boilgen
 
 > **Note:** Ensure `~/.local/bin` is in your `PATH`.
 > 
-> **Updating** Uninstall, and then re-install to update. 
+> **Updating** Re-Run the Installation Script. (The old Installation will be __deleted__ and boilgen will then be installed)
 ---
 
 ## 🚀 Usage
@@ -88,6 +88,21 @@ rm -rf ~/.boilgen ~/.local/bin/boilgen
 
 ## 💡 Contributing
 Want to add more templates or improve the script? Feel free to fork the repo and submit a pull request!
+
+### The Template format
+```python
+"python": {
+  "flask": {
+      "templates/": "dir",
+      "static/": "dir",
+      "app.py": "from flask import Flask\napp = Flask(__name__)\n@app.route('/')\ndef index():\n\treturn 'Hello World!'\nif __name__ == '__main__':\n\tapp.run(debug=True)"
+  },
+```
+Use the Key as the file/folder name.
+
+Use `dir` (lowercase) as a value for folders, else, a file with that content will be created.
+
+Use `\n`for New Lines in code and `\t` for Tabs.
 
 ---
 
